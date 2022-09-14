@@ -1,11 +1,11 @@
 <template>
   <div class="img h-100 container-fluid view-height" :style="`background-image: url(${APOD.hdurl})`">
-    <div class="row">
-      <button class="col-2" @click="getApod()">get apod</button>
+    <div class="row d-flex justify-content-center">
+      <button class="btn btn-dark text-light col-2 m-3" @click="getApod()">get apod</button>
     </div>
-    <div class="row">
-      <div class="col-8 align-items-center text-white mt-5">{{APOD.explanation}}</div>
-  <span class="text-light mt-4">-{{APOD.title}}</span>
+    <div class="row card m-5">
+      <div class="col-8 align-items-center mt-5 ">{{APOD.explanation}}</div>
+      <span class="text-light mt-4 d-flex justify-content-center">-{{APOD.title}}</span>
     </div>
   </div>
 
@@ -20,22 +20,22 @@ import { apodService } from '../services/ApodService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 
-export default{
-  setup(){
-  async function getApod(){
-    try {
-      await apodService.getApod()
-    } catch (error) {
-      logger.error('[getting apod]', error)
-      Pop.error(error)
+export default {
+  setup() {
+    async function getApod() {
+      try {
+        await apodService.getApod()
+      } catch (error) {
+        logger.error('[getting apod]', error)
+        Pop.error(error)
+      }
     }
-  }
-  
 
-  return {
-    APOD: computed (() => AppState.APOD),
-    getApod
-  }
+
+    return {
+      APOD: computed(() => AppState.APOD),
+      getApod
+    }
   }
 }
 
@@ -43,7 +43,7 @@ export default{
 
 
 <style scoped>
-.view-height{
+.view-height {
   min-height: 100vh;
 }
 </style>
