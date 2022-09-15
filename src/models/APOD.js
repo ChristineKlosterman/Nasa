@@ -4,6 +4,5 @@ export class APOD {
         this.title = data.title
         this.explanation = data.explanation
         this.hdurl = data.hdurl
-
     }
 }

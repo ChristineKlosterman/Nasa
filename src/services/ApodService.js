@@ -13,14 +13,12 @@ class APODService {
 
     }
 
-    async getApodBySearch() {
-        const res = await nasaApi.get('/date/planetary/apod', {
-            params: {
-                query: searchTerm
-            }
-        })
-        AppState.APOD = res.data.map(a => new APOD(a))
+    async getApodByDate(date = '') {
+        const res = await nasaApi.get('', { params: { date } })
+        console.log(res.data);
+        AppState.APOD = new APOD(res.data)
     }
+
 
 
 }
